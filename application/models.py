@@ -10,8 +10,8 @@ class Tracker(db.Model):
     # log = relationship("Log")
 
 class Log(db.Model):
-    __tablename__ = 'log'
-    timeStamp = db.Column(db.DateTime, primary_key=True)
+    __tablename__ = 'logs'
+    timeStamp = db.Column(db.String, primary_key=True)
     trackerId = db.Column(db.String, db.ForeignKey('Tracker.id'))
     value = db.Column(db.String)
     note = db.Column(db.String)

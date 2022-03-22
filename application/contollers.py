@@ -21,5 +21,7 @@ def tracker(username):
 @app.route('/log/<trackerId>', methods=['GET', 'POST'])
 def log(trackerId):
     #display logs index page
-    pass
+    logs = Log.query.filter_by(trackerId=trackerId).all()
+    # print("print:", logs.trackerId)
+    return render_template('logs.html', logs=logs, tracker = Tracker.query.filter_by(id=trackerId).first().name)
 
