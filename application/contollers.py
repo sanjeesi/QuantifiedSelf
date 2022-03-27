@@ -6,8 +6,8 @@ from flask import flash
 from application.models import Tracker, Log
 import datetime
 from .database import db
-import requests
-import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -23,13 +23,16 @@ def login():
 def tracker(username):
     # trackers = Tracker.query.all()
     trackers = db.session.query(Tracker).all()
+    # timestamp = Log.query(db.func.max(Log.timeStamp)).first()[0]
     return render_template('trackers.html', trackers=trackers, username= username)
 
 @app.route('/log/<trackerId>,<username>', methods=['GET', 'POST'])
 def log(trackerId,username):
     #display logs index page
     logs = Log.query.filter_by(trackerId=trackerId).all()
-    # print("print:", logs.trackerId)
+    # df = pd.DataFrame.from_records(l.__dict__ for l in logs)
+    # df.plot(x="timeStamp", y="value", kind="line")
+    # print("trend line:", df.columns)
     return render_template('logs.html', logs=logs, tracker = Tracker.query.filter_by(id=trackerId).first().name, username=username)
 
 @app.route('/addLog/<trackerId>,<username>', methods=['GET', 'POST'])
