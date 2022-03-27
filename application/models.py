@@ -12,6 +12,6 @@ class Tracker(db.Model):
 class Log(db.Model):
     __tablename__ = 'logs'
     timeStamp = db.Column(db.String, primary_key=True)
-    trackerId = db.Column(db.String, db.ForeignKey('Tracker.id'))
+    trackerId = db.Column(db.String, db.ForeignKey('tracker.id'))
     value = db.Column(db.String)
     note = db.Column(db.String)

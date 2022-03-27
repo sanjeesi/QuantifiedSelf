@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Log {{ tracker }}</b></h3>
+<div class="container">
+    <form method="post">
+        <div class="form-group">
+            <label for="when">When</label>
+            <input type="text" class="form-control" name="when" value={{timestamp}}>
+        </div>
+        <div class="form-group">
+            <label for="value">Value</label>
+            <input type="text" class="form-control" name="value" placeholder="Enter value">
+        </div>
+        <div class="form-group">
+            <label for="note">Notes</label>
+            <input type="textbox" class="form-control" name="note" placeholder="Enter notes">
+        </div>
+        <button type="submit" class="btn btn-primary">Log it</button>
+    </form>
+</div>
+{% endblock %}}
